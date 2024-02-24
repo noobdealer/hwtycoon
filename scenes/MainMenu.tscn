@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://djpgwfhqbxfi2"]
+
+[ext_resource type="Script" path="res://scripts/StartNewGame.gd" id="1_uiumt"]
+
+[sub_resource type="GDScript" id="GDScript_lglvs"]
+script/source = "extends Button
+
+@onready var newgamepanel = get_tree().get_root().get_node(\"/root/Control/Panel\")
+
+func _pressed():
+	newgamepanel.visible = !newgamepanel.visible
+"
+
+[sub_resource type="SystemFont" id="SystemFont_e8ccj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l4wu4"]
+font = SubResource("SystemFont_e8ccj")
+font_size = 32
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewGameButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 215.0
+offset_right = 706.0
+offset_bottom = 281.0
+text = "New Game"
+script = SubResource("GDScript_lglvs")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 122.0
+offset_right = 494.0
+offset_bottom = 145.0
+text = "Hardware Tycoon for Godot 4"
+label_settings = SubResource("LabelSettings_l4wu4")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 384.0
+offset_top = 314.0
+offset_right = 874.0
+offset_bottom = 530.0
+
+[node name="NewGameLabel" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 198.0
+offset_top = 4.0
+offset_right = 283.0
+offset_bottom = 27.0
+text = "New Game"
+
+[node name="StartNewGame" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 209.0
+offset_top = 178.0
+offset_right = 255.0
+offset_bottom = 209.0
+text = "Start"
+script = ExtResource("1_uiumt")
+
+[node name="CompanyName" type="LineEdit" parent="Panel"]
+layout_mode = 2
+offset_left = 126.0
+offset_top = 129.0
+offset_right = 364.0
+offset_bottom = 160.0
+placeholder_text = "Company Name"
+max_length = 40
+
+[node name="CEOName" type="LineEdit" parent="Panel"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 58.0
+offset_right = 365.0
+offset_bottom = 89.0
+placeholder_text = "CEO Name"
+max_length = 40

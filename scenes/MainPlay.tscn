@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://lxoexalxabme"]
+
+[node name="MainPlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 51.0
+color = Color(0.392157, 0.709804, 0.964706, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 590.0
+offset_right = 1151.0
+offset_bottom = 641.0
+color = Color(0.392157, 0.709804, 0.964706, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1037.0
+offset_top = 14.0
+offset_right = 1126.0
+offset_bottom = 37.0
+text = "Popularity: "
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 102.0
+offset_bottom = 37.0
+text = "01/01/1970"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 562.0
+offset_right = 174.0
+offset_bottom = 617.0
+text = "Exit"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 255.0
+offset_top = 564.0
+offset_right = 330.0
+offset_bottom = 619.0
+text = "Save"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 407.0
+offset_top = 556.0
+offset_right = 482.0
+offset_bottom = 611.0
+text = "Load"
+
+[node name="Button4" type="Button" parent="."]
+offset_left = 520.0
+offset_top = 562.0
+offset_right = 595.0
+offset_bottom = 617.0
+text = "New CPU"
