@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
+title: "[FEATURE]"
 labels: enhancement
 assignees: ''
 
@@ -10,8 +10,8 @@ assignees: ''
 **Issue**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-**Describe the implementation of the feature**
-A clear and concise description of what you want to happen.
+**How to resolve**
+A clear and concise solution that can resolve the issue using the new feature
 
 **Describe alternatives you've considered**
 A clear and concise description of any alternative solutions or features you've considered.
