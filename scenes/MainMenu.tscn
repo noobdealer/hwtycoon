@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://djpgwfhqbxfi2"]
+[gd_scene load_steps=11 format=3 uid="uid://djpgwfhqbxfi2"]
 
-[ext_resource type="LabelSettings" uid="uid://5bef3mnr8xka" path="res://resources/LabelSettings/MainTitle.tres" id="1_43xyg"]
-[ext_resource type="Script" path="res://scripts/StartNewGame.gd" id="1_uiumt"]
-[ext_resource type="LabelSettings" uid="uid://0choly6ya1o1" path="res://resources/LabelSettings/SubTitle.tres" id="2_q766e"]
-[ext_resource type="LabelSettings" uid="uid://cjtke0ijps10s" path="res://resources/LabelSettings/DefaultStyle.tres" id="3_fljpe"]
+[ext_resource type="LabelSettings" uid="uid://5bef3mnr8xka" path="res://resources/label_settings/main_title.tres" id="1_43xyg"]
+[ext_resource type="LabelSettings" uid="uid://0choly6ya1o1" path="res://resources/label_settings/subtitle.tres" id="2_q766e"]
+[ext_resource type="LabelSettings" uid="uid://cjtke0ijps10s" path="res://resources/label_settings/default_style.tres" id="3_fljpe"]
+[ext_resource type="Script" path="res://scripts/InitMainPlay.gd" id="4_8babp"]
+[ext_resource type="Texture2D" uid="uid://bn34o80wt3ove" path="res://resources/imported_resources/mm_fullscreen-sheet0.png" id="5_a6kwu"]
 
 [sub_resource type="GDScript" id="GDScript_lglvs"]
 script/source = "extends Button
@@ -93,6 +94,7 @@ label_settings = ExtResource("1_43xyg")
 horizontal_alignment = 1
 
 [node name="GodotLabel" type="Label" parent="MainPanel/TitleLabel"]
+layout_mode = 0
 offset_left = 66.0
 offset_top = 36.0
 offset_right = 523.0
@@ -102,14 +104,16 @@ label_settings = ExtResource("2_q766e")
 horizontal_alignment = 1
 
 [node name="LoadGameButton" type="Button" parent="MainPanel"]
+layout_mode = 0
 offset_left = 441.0
 offset_top = 212.0
 offset_right = 683.0
 offset_bottom = 278.0
-text = "Load Game"
+text = "Load"
 script = SubResource("GDScript_6cvpq")
 
 [node name="SettingsButton" type="Button" parent="MainPanel"]
+layout_mode = 0
 offset_left = 441.0
 offset_top = 300.0
 offset_right = 683.0
@@ -118,6 +122,7 @@ text = "Settings"
 script = SubResource("GDScript_w36mk")
 
 [node name="AboutButton" type="Button" parent="MainPanel"]
+layout_mode = 0
 offset_left = 441.0
 offset_top = 388.0
 offset_right = 683.0
@@ -126,6 +131,7 @@ text = "About"
 script = SubResource("GDScript_kspvl")
 
 [node name="BugLabel" type="Label" parent="MainPanel"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 548.0
 offset_right = 490.0
@@ -158,7 +164,7 @@ offset_top = 167.0
 offset_right = 265.0
 offset_bottom = 198.0
 text = "Start"
-script = ExtResource("1_uiumt")
+script = ExtResource("4_8babp")
 
 [node name="CompanyName" type="LineEdit" parent="StartGamePanel"]
 layout_mode = 2
@@ -180,6 +186,7 @@ max_length = 40
 
 [node name="SettingsPanel" type="Panel" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 24.0
 offset_top = 26.0
 offset_right = 1000.0
@@ -195,6 +202,7 @@ text = "Settings"
 label_settings = ExtResource("1_43xyg")
 
 [node name="ExitSettingsButton" type="Button" parent="SettingsPanel"]
+layout_mode = 0
 offset_left = 462.0
 offset_top = 476.0
 offset_right = 508.0
@@ -234,3 +242,14 @@ offset_right = 354.0
 offset_bottom = 135.0
 bbcode_enabled = true
 text = "Hardware Tycoon for Godot 4 is an open source recreation of the original Hardware Tycoon by Haxor1337."
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 941.0
+offset_top = 486.0
+offset_right = 1013.0
+offset_bottom = 558.0
+texture_normal = ExtResource("5_a6kwu")
+texture_pressed = ExtResource("5_a6kwu")
+texture_hover = ExtResource("5_a6kwu")
+stretch_mode = 0

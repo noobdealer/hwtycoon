@@ -17,8 +17,13 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="HWTycoonGodot"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.392157, 0.709804, 0.964706, 1)
-boot_splash/image="res://resources/ImportedResources/load_back-sheet0.png"
+boot_splash/image="res://resources/imported_resources/load_back-sheet0.png"
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/Global.gd"
+PlayerCompany="*res://scripts/PlayerCompany.gd"
 
 [display]
 
