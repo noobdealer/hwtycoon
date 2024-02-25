@@ -5,6 +5,7 @@ func _pressed():
 	var CompanyNameNode = get_node("../CompanyName")
 	var CEONameNode = get_node("../CEOName")
 	var PlayerCompanyGlobal = get_node("/root/PlayerCompany")
+	print("New game initialized")
 	print("Player name: " + CEONameNode.get_text())
 	print("Company name: " + CompanyNameNode.get_text())
 	

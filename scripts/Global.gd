@@ -18,7 +18,13 @@ func InitializeGameConfig():
 	GameConfig.set_value("Game", "r&d_autoscroll", 1) ## Autoscrolls your R&D tab to the latest tech
 	GameConfig.set_value("Game", "text_speed", 29) ## How fast text scrolls
 	GameConfig.save("user://gamesettings.cfg")
+	print("GameConfig initialized")
 	return
+
+## This function gets a value from the GameConfig.
+func GetGConfValue(section, key):
+	return GameConfig.get_value(section, key)
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,4 +36,3 @@ func _ready():
 		# TODO: Check if there are alternate reasons for why a file doesn't load
 		InitializeGameConfig()
 		return
-	
