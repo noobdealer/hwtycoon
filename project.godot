@@ -10,15 +10,22 @@ config_version=5
 
 [application]
 
-config/name="HWTycoon2"
+config/name="Hardware Tycoon"
+config/version="v0.0.1"
 run/main_scene="res://scenes/MainMenu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="HWTycoonGodot"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+boot_splash/bg_color=Color(0.392157, 0.709804, 0.964706, 1)
+boot_splash/image="res://resources/ImportedResources/load_back-sheet0.png"
 config/icon="res://icon.svg"
 
-[editor]
+[display]
 
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
+window/size/viewport_width=1024
+window/size/viewport_height=576
+window/size/initial_position_type=3
+window/stretch/mode="viewport"
 
 [rendering]
 
