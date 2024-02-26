@@ -1,4 +1,7 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://0choly6ya1o1"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://0choly6ya1o1"]
+
+[ext_resource type="FontFile" uid="uid://bqtj7evfr2o24" path="res://resources/font/lato-regular-webfont.ttf" id="1_0vsoe"]
 
 [resource]
+font = ExtResource("1_0vsoe")
 font_size = 24
