@@ -21,16 +21,17 @@ func InitializeGameConfig():
 	return
 
 ## This function returns a value from the GameConfig.
-func GetGConfValue(section, key):
+func GetGameConfigValue(section, key):
 	return GameConfig.get_value(section, key)
 	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Hardware Tycoon (godot) v0.2.12")
-	var load_bar = get_node("/root/LoadingScreen/ProgressBar")
-	var err = GameConfig.load("user://gamesettings.cfg")
+	# var load_bar = get_node("/root/LoadingScreen/ProgressBar")
+	var main_menu_scene = preload("res://scenes/main_menu.tscn")
 	
+	var err = GameConfig.load("user://gamesettings.cfg")
 	if err != OK:
 		push_warning("Game config failed to load for unknown reason, initializing")
 		# TODO: Tell user their config's invalid and has been reset
@@ -39,6 +40,9 @@ func _ready():
 		return
 	
 	print("Game config loaded")
-	load_bar.set_value(100)
+	# Currently does not work.
+	# load_bar.set_value(100)
 	
-	get_tree().change_scene_to_file("scenes/main_menu.tscn")
+	# BUG: Slow performance changing to file, throws out error related to child
+	# loading if not using call_deferred. Additionally, no progress bar.
+	get_tree().call_deferred("change_scene_to_packed", main_menu_scene)

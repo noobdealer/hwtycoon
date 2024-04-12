@@ -5,7 +5,7 @@ func _ready():
 	var _PlayerCompany = {
 		"Cash": 0, ## Money available
 		"CEOName": "Steve Jobs", ## Name of CEO
-		"CompanyName": "McDonalds" ## Company name
+		"CompanyName": "Apple Computer Inc." ## Company name
 	}
 	print("PlayerCompany initialized")
 

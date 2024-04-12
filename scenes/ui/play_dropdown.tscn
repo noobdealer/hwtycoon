@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgd7iowcmkxgj"]
+
+[ext_resource type="FontFile" uid="uid://ces8cy0k1egmf" path="res://resources/font/lato-bold-webfont.ttf" id="1_lhyy3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsvrb"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynfq3"]
+bg_color = Color(0.317647, 0.67451, 0.960784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iisjo"]
+bg_color = Color(0.392157, 0.709804, 0.964706, 1)
+
+[sub_resource type="Theme" id="Theme_n1alu"]
+default_font_size = 20
+Button/fonts/font = ExtResource("1_lhyy3")
+Button/styles/hover = SubResource("StyleBoxFlat_ynfq3")
+Button/styles/normal = SubResource("StyleBoxFlat_iisjo")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_right = 0.187
+anchor_bottom = 0.389
+offset_right = 0.511993
+offset_bottom = -0.0640106
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 224.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qsvrb")
+
+[node name="NewHardware" type="Button" parent="Panel"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 32.0
+rotation = -0.00133713
+theme = SubResource("Theme_n1alu")
+text = "New Hardware"
+alignment = 0
+
+[node name="Research" type="Button" parent="Panel"]
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = 64.0
+theme = SubResource("Theme_n1alu")
+text = "R&D"
+alignment = 0
+
+[node name="Products" type="Button" parent="Panel"]
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 96.0
+theme = SubResource("Theme_n1alu")
+text = "Products"
+alignment = 0
+
+[node name="Companies" type="Button" parent="Panel"]
+offset_top = 96.0
+offset_right = 192.0
+offset_bottom = 128.0
+theme = SubResource("Theme_n1alu")
+text = "Companies"
+alignment = 0
+
+[node name="Milestones" type="Button" parent="Panel"]
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 160.0
+theme = SubResource("Theme_n1alu")
+text = "Milestones"
+alignment = 0
+
+[node name="Market" type="Button" parent="Panel"]
+offset_top = 160.0
+offset_right = 192.0
+offset_bottom = 192.0
+theme = SubResource("Theme_n1alu")
+text = "Market"
+alignment = 0
+
+[node name="Bank" type="Button" parent="Panel"]
+offset_top = 192.0
+offset_right = 192.0
+offset_bottom = 224.0
+rotation = -0.00133713
+theme = SubResource("Theme_n1alu")
+text = "Bank"
+alignment = 0

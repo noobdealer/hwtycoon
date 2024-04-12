@@ -1,82 +1,92 @@
-[gd_scene load_steps=20 format=3 uid="uid://djpgwfhqbxfi2"]
+[gd_scene load_steps=22 format=3 uid="uid://djpgwfhqbxfi2"]
 
 [ext_resource type="Shader" uid="uid://b3mhd7qe7y4du" path="res://resources/visual_shader/trademark_blue.tres" id="1_rky7e"]
 [ext_resource type="Theme" uid="uid://cw13xaerpch24" path="res://resources/theme/general.theme" id="2_e16di"]
+[ext_resource type="Texture2D" uid="uid://18jv701vii4t" path="res://resources/imported_resources/mm_garage-sheet0.png" id="3_7phob"]
 [ext_resource type="LabelSettings" uid="uid://0choly6ya1o1" path="res://resources/label_settings/subtitle.tres" id="3_bax4s"]
 [ext_resource type="Shader" uid="uid://cpq3uhr4vunkl" path="res://resources/visual_shader/white_cpu.tres" id="4_4exxx"]
 [ext_resource type="Texture2D" uid="uid://vk5vyae4yroi" path="res://resources/imported_resources/hardw_cpu-sheet0.png" id="5_jim6u"]
 [ext_resource type="FontFile" uid="uid://ces8cy0k1egmf" path="res://resources/font/lato-bold-webfont.ttf" id="6_m8ng4"]
 [ext_resource type="LabelSettings" uid="uid://cjtke0ijps10s" path="res://resources/label_settings/default_style.tres" id="7_tl45y"]
 [ext_resource type="Script" path="res://scripts/init_main_play.gd" id="8_5fj2s"]
+[ext_resource type="Script" path="res://scripts/button_panel_control.gd" id="8_872ey"]
 [ext_resource type="LabelSettings" uid="uid://5bef3mnr8xka" path="res://resources/label_settings/main_title.tres" id="9_e7jlu"]
 [ext_resource type="Texture2D" uid="uid://bn34o80wt3ove" path="res://resources/imported_resources/mm_fullscreen-sheet0.png" id="10_oy37t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_25i0a"]
 shader = ExtResource("1_rky7e")
 
-[sub_resource type="GDScript" id="GDScript_lglvs"]
-script/source = "extends Button
+[sub_resource type="GDScript" id="GDScript_m0xa4"]
+resource_name = "background_cursor_scrolling"
+script/source = "extends Sprite2D
 
-@onready var newgamepanel = get_tree().get_root().get_node(\"/root/Control/StartGamePanel\")
+var original_position = Vector2.ZERO
 
-func _pressed():
-	newgamepanel.visible = !newgamepanel.visible
+func _ready():
+	original_position = position
+
+func _process(delta):
+	var mouse_pos = get_global_mouse_position()
+	# Change number to control sensitivity
+	var offset = (mouse_pos - original_position) / 50.0
+	
+	position = original_position + offset
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_25wry"]
 shader = ExtResource("4_4exxx")
 
+[sub_resource type="GDScript" id="GDScript_jx2nn"]
+resource_name = "RotateCPUIcon"
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var speed = 0.33
+	rotation += speed*delta
+	
+	# TODO: Make a CPU show up and float off screen whenever you click.
+	#if Input.is_action_just_pressed(\"click\"):
+	#	pass"
+
 [sub_resource type="LabelSettings" id="LabelSettings_o8q82"]
 font = ExtResource("6_m8ng4")
 font_size = 64
 
-[sub_resource type="GDScript" id="GDScript_6cvpq"]
-resource_name = "LoadGame"
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_erdtn"]
+
+[sub_resource type="GDScript" id="GDScript_w4t2l"]
+resource_name = "ReturnToMainMenuFromNewGame"
 script/source = "extends Button
 
-func _pressed():
-	push_error(\"Not implemented\")
-"
-
-[sub_resource type="GDScript" id="GDScript_w36mk"]
-resource_name = "ShowSettings"
-script/source = "extends Button
-
-@onready var MainPanel = get_tree().get_root().get_node(\"/root/Control/MainPanel\")
-@onready var SettingsPanel = get_tree().get_root().get_node(\"/root/Control/SettingsPanel\")
+@onready var new_game_panel = get_tree().get_root().get_node(\"/root/Control/StartGamePanel\")
+@onready var button_panel = get_tree().get_root().get_node(\"/root/Control/MainPanel/ButtonPanel\")
 
 func _pressed():
-	
-	MainPanel.visible = !MainPanel.visible
-	SettingsPanel.visible = !SettingsPanel.visible
-
-"
-
-[sub_resource type="GDScript" id="GDScript_kspvl"]
-resource_name = "ShowAbout"
-script/source = "extends Button
-
-@onready var AboutPanel = get_tree().get_root().get_node(\"/root/Control/AboutPanel\")
-
-func _pressed():
-	AboutPanel.visible = !AboutPanel.visible
+	new_game_panel.visible = !new_game_panel.visible
+	button_panel.visible = !button_panel.visible
 "
 
 [sub_resource type="GDScript" id="GDScript_owij1"]
 resource_name = "ReturnToMainMenuFromSettings"
 script/source = "extends Button
 
-@onready var MainPanel = get_tree().get_root().get_node(\"/root/Control/MainPanel\")
+@onready var MainPanel = get_tree().get_root().get_node(\"/root/Control/MainPanel/ButtonPanel\")
 @onready var SettingsPanel = get_tree().get_root().get_node(\"/root/Control/SettingsPanel\")
 
 func _pressed():
-	
 	MainPanel.visible = !MainPanel.visible
 	SettingsPanel.visible = !SettingsPanel.visible
 
 "
 
-[sub_resource type="GDScript" id="GDScript_21fol"]
+[sub_resource type="GDScript" id="GDScript_0dhct"]
 resource_name = "fullscreen_control"
 script/source = "extends TextureButton
 
@@ -110,15 +120,11 @@ layout_mode = 0
 offset_right = 1024.0
 offset_bottom = 576.0
 
-[node name="NewGameButton" type="Button" parent="MainPanel"]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 192.0
-offset_right = 640.0
-offset_bottom = 256.0
-theme = ExtResource("2_e16di")
-text = "New Game"
-script = SubResource("GDScript_lglvs")
+[node name="MmGarage-sheet0" type="Sprite2D" parent="MainPanel"]
+position = Vector2(512, 464)
+scale = Vector2(0.527778, 0.523809)
+texture = ExtResource("3_7phob")
+script = SubResource("GDScript_m0xa4")
 
 [node name="GodotLabel" type="Label" parent="MainPanel"]
 layout_mode = 0
@@ -132,8 +138,9 @@ horizontal_alignment = 1
 
 [node name="HardwCpu-sheet0" type="Sprite2D" parent="MainPanel"]
 material = SubResource("ShaderMaterial_25wry")
-position = Vector2(232, 88)
+position = Vector2(232, 80)
 texture = ExtResource("5_jim6u")
+script = SubResource("GDScript_jx2nn")
 
 [node name="TitleLabel" type="Label" parent="MainPanel"]
 layout_mode = 0
@@ -145,37 +152,6 @@ text = "Hardware Tycoon"
 label_settings = SubResource("LabelSettings_o8q82")
 horizontal_alignment = 1
 
-[node name="LoadGameButton" type="Button" parent="MainPanel"]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 272.0
-offset_right = 640.0
-offset_bottom = 336.0
-theme = ExtResource("2_e16di")
-disabled = true
-text = "Load"
-script = SubResource("GDScript_6cvpq")
-
-[node name="SettingsButton" type="Button" parent="MainPanel"]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 352.0
-offset_right = 640.0
-offset_bottom = 418.0
-theme = ExtResource("2_e16di")
-text = "Settings"
-script = SubResource("GDScript_w36mk")
-
-[node name="AboutButton" type="Button" parent="MainPanel"]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 432.0
-offset_right = 640.0
-offset_bottom = 498.0
-theme = ExtResource("2_e16di")
-text = "About"
-script = SubResource("GDScript_kspvl")
-
 [node name="BugLabel" type="Label" parent="MainPanel"]
 layout_mode = 0
 offset_left = 8.0
@@ -186,121 +162,250 @@ text = "In early development, report all bugs to the GitHub repository."
 label_settings = ExtResource("7_tl45y")
 horizontal_alignment = 1
 
+[node name="VersionLabel" type="Label" parent="MainPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 524.0
+offset_right = 490.0
+offset_bottom = 547.0
+text = "Dev branch"
+label_settings = ExtResource("7_tl45y")
+
+[node name="ButtonPanel" type="Panel" parent="MainPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_erdtn")
+script = ExtResource("8_872ey")
+
+[node name="NewGameButton" type="Button" parent="MainPanel/ButtonPanel"]
+layout_mode = 2
+offset_top = 192.0
+offset_right = 1024.0
+offset_bottom = 256.0
+focus_mode = 0
+theme = ExtResource("2_e16di")
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="MainPanel/ButtonPanel"]
+layout_mode = 2
+offset_top = 272.0
+offset_right = 1024.0
+offset_bottom = 336.0
+focus_mode = 0
+theme = ExtResource("2_e16di")
+disabled = true
+text = "Load"
+
+[node name="SettingsButton" type="Button" parent="MainPanel/ButtonPanel"]
+layout_mode = 2
+offset_top = 352.0
+offset_right = 1024.0
+offset_bottom = 418.0
+focus_mode = 0
+theme = ExtResource("2_e16di")
+text = "Settings"
+
+[node name="AboutButton" type="Button" parent="MainPanel/ButtonPanel"]
+layout_mode = 2
+offset_top = 432.0
+offset_right = 1024.0
+offset_bottom = 498.0
+focus_mode = 0
+theme = ExtResource("2_e16di")
+text = "About"
+
 [node name="StartGamePanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
-offset_left = 672.0
-offset_top = 192.0
-offset_right = 992.0
-offset_bottom = 400.0
+offset_left = 128.0
+offset_top = 168.0
+offset_right = 896.0
+offset_bottom = 488.0
 
 [node name="NewGameLabel" type="Label" parent="StartGamePanel"]
 layout_mode = 2
-offset_left = 96.0
+offset_left = 256.0
 offset_top = 8.0
-offset_right = 224.0
+offset_right = 512.0
 offset_bottom = 43.0
-text = "New Game"
+text = "Create your company"
 label_settings = ExtResource("3_bax4s")
 horizontal_alignment = 1
 
+[node name="NewGameReturnToMenu" type="Button" parent="StartGamePanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 280.0
+offset_right = 181.0
+offset_bottom = 312.0
+text = "Return to Main Menu"
+script = SubResource("GDScript_w4t2l")
+
 [node name="StartNewGame" type="Button" parent="StartGamePanel"]
 layout_mode = 2
-offset_left = 112.0
-offset_top = 160.0
-offset_right = 208.0
-offset_bottom = 192.0
+offset_left = 664.0
+offset_top = 280.0
+offset_right = 760.0
+offset_bottom = 312.0
 text = "Start Game"
 script = ExtResource("8_5fj2s")
 
-[node name="CompanyName" type="LineEdit" parent="StartGamePanel"]
-layout_mode = 2
-offset_left = 32.0
+[node name="CompanyName" type="Label" parent="StartGamePanel"]
+layout_mode = 0
+offset_left = 16.0
 offset_top = 56.0
-offset_right = 288.0
-offset_bottom = 88.0
-placeholder_text = "Company Name"
+offset_right = 138.0
+offset_bottom = 79.0
+text = "Company name"
+
+[node name="CompanyName" type="LineEdit" parent="StartGamePanel/CompanyName"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 32.0
+offset_right = 256.0
+offset_bottom = 64.0
+placeholder_text = "Your company name"
 max_length = 40
 
-[node name="CEOFirstName" type="LineEdit" parent="StartGamePanel"]
+[node name="FounderName" type="Label" parent="StartGamePanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 131.0
+offset_bottom = 151.0
+text = "Founder name"
+
+[node name="CEOFirstName" type="LineEdit" parent="StartGamePanel/FounderName"]
+unique_name_in_owner = true
 layout_mode = 2
-offset_left = 32.0
-offset_top = 104.0
-offset_right = 152.0
-offset_bottom = 136.0
+offset_top = 32.0
+offset_right = 120.0
+offset_bottom = 64.0
 placeholder_text = "First Name"
 max_length = 40
 
-[node name="CEOLastName" type="LineEdit" parent="StartGamePanel"]
+[node name="CEOLastName" type="LineEdit" parent="StartGamePanel/FounderName"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 168.0
-offset_top = 105.0
-offset_right = 288.0
-offset_bottom = 137.0
+offset_left = 136.0
+offset_top = 32.0
+offset_right = 256.0
+offset_bottom = 64.0
 placeholder_text = "Last Name"
 max_length = 40
 
+[node name="Difficulty" type="Label" parent="StartGamePanel"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 56.0
+offset_right = 442.0
+offset_bottom = 79.0
+text = "Difficulty"
+
+[node name="VeryHardDifficulty" type="Button" parent="StartGamePanel/Difficulty"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 104.0
+offset_right = 192.0
+offset_bottom = 136.0
+text = "Very Hard"
+
+[node name="HardDifficulty" type="Button" parent="StartGamePanel/Difficulty"]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 88.0
+offset_bottom = 136.0
+text = "Hard"
+
+[node name="NormalDifficulty" type="Button" parent="StartGamePanel/Difficulty"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = 64.0
+text = "Normal"
+
+[node name="EasyDifficulty" type="Button" parent="StartGamePanel/Difficulty"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 88.0
+offset_bottom = 64.0
+text = "Easy"
+
 [node name="SettingsPanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_left = 24.0
-offset_top = 26.0
-offset_right = 1000.0
-offset_bottom = 550.0
+offset_left = 128.0
+offset_top = 168.0
+offset_right = 896.0
+offset_bottom = 488.0
 
 [node name="Label" type="Label" parent="SettingsPanel"]
 layout_mode = 0
-offset_left = 426.0
-offset_top = 20.0
-offset_right = 551.0
-offset_bottom = 65.0
+offset_left = 328.0
+offset_top = 8.0
+offset_right = 444.0
+offset_bottom = 55.0
 text = "Settings"
 label_settings = ExtResource("9_e7jlu")
 
 [node name="ExitSettingsButton" type="Button" parent="SettingsPanel"]
 layout_mode = 0
-offset_left = 462.0
-offset_top = 476.0
-offset_right = 508.0
-offset_bottom = 507.0
+offset_left = 360.0
+offset_top = 280.0
+offset_right = 406.0
+offset_bottom = 311.0
 text = "Back"
 script = SubResource("GDScript_owij1")
 
 [node name="Label2" type="Label" parent="SettingsPanel"]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 248.0
-offset_right = 544.0
-offset_bottom = 271.0
+offset_left = 336.0
+offset_top = 144.0
+offset_right = 440.0
+offset_bottom = 167.0
 text = "Nothing yet..."
 
 [node name="AboutPanel" type="Panel" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_left = 28.0
-offset_top = 49.0
-offset_right = 400.0
-offset_bottom = 528.0
+offset_left = 128.0
+offset_top = 168.0
+offset_right = 896.0
+offset_bottom = 488.0
 
 [node name="Label" type="Label" parent="AboutPanel"]
 layout_mode = 0
-offset_left = 143.0
-offset_top = 16.0
-offset_right = 237.0
-offset_bottom = 61.0
+offset_left = 340.0
+offset_top = 24.0
+offset_right = 429.0
+offset_bottom = 71.0
 text = "About"
 label_settings = ExtResource("9_e7jlu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="AboutPanel"]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 61.0
-offset_right = 354.0
-offset_bottom = 135.0
+offset_left = 224.0
+offset_top = 88.0
+offset_right = 560.0
+offset_bottom = 162.0
 bbcode_enabled = true
 text = "Hardware Tycoon for Godot 4 is an open source recreation of the original Hardware Tycoon by Haxor1337."
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Button" type="Button" parent="AboutPanel"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 272.0
+offset_right = 405.0
+offset_bottom = 303.0
+text = "Back"
+
+[node name="FullscreenButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 944.0
 offset_top = 496.0
@@ -310,4 +415,12 @@ texture_normal = ExtResource("10_oy37t")
 texture_pressed = ExtResource("10_oy37t")
 texture_hover = ExtResource("10_oy37t")
 stretch_mode = 0
-script = SubResource("GDScript_21fol")
+script = SubResource("GDScript_0dhct")
+
+[connection signal="pressed" from="MainPanel/ButtonPanel/NewGameButton" to="MainPanel/ButtonPanel" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MainPanel/ButtonPanel/LoadGameButton" to="MainPanel/ButtonPanel" method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="MainPanel/ButtonPanel/SettingsButton" to="MainPanel/ButtonPanel" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainPanel/ButtonPanel/AboutButton" to="MainPanel/ButtonPanel" method="_on_about_button_pressed"]
+[connection signal="pressed" from="AboutPanel/Button" to="MainPanel/ButtonPanel" method="_on_about_button_pressed"]
+[connection signal="pressed" from="FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="toggled" from="FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
