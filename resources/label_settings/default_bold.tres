@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ld3ft58h4k75"]
+
+[ext_resource type="FontFile" uid="uid://ces8cy0k1egmf" path="res://resources/font/lato-bold-webfont.ttf" id="1_yt56u"]
+
+[resource]
+font = ExtResource("1_yt56u")
+font_size = 22

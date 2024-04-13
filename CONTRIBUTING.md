@@ -1,5 +1,7 @@
 # Contributing
-Thank you for deciding to help! Note that this is a placeholder, for now.
+Thank you for deciding to help!
+> [!NOTE]
+> This is a placeholder document, and is not at all finished.
 ## How to help
 Find an issue that you want to work on. Once you've completed it, send a pull request and I'll review it.
 ## Style guides

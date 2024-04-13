@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://kh7y8ogmikim"]
+
+[ext_resource type="FontFile" uid="uid://bqtj7evfr2o24" path="res://resources/font/lato-regular-webfont.ttf" id="1_llsvi"]
+[ext_resource type="FontFile" uid="uid://dn6eeashribl" path="res://resources/font/lato-light-webfont.ttf" id="2_hcbrt"]
+
+[node name="ConsolePanel" type="Control"]
+layout_mode = 3
+anchor_right = 0.25
+anchor_bottom = 0.278
+offset_bottom = -0.128021
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConsoleInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 160.0
+theme_override_fonts/font = ExtResource("1_llsvi")
+theme_override_font_sizes/font_size = 12
+
+[node name="ConsoleOutput" type="TextEdit" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_hcbrt")
+theme_override_font_sizes/font_size = 12
+text = "press \"`\" or \"F2\" to close
+type \"help\" for list of commands"
+editable = false
+wrap_mode = 1

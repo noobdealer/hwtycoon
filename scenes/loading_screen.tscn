@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkxn51njttu01"]
+
+[ext_resource type="Texture2D" uid="uid://b6rck73duonis" path="res://resources/imported_resources/load_back-sheet0.png" id="1_a4rrw"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadBack-sheet0" type="Sprite2D" parent="."]
+position = Vector2(512, 288)
+texture = ExtResource("1_a4rrw")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 400.0
+offset_right = 601.0
+offset_bottom = 427.0

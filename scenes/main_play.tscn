@@ -1,0 +1,142 @@
+[gd_scene load_steps=16 format=3 uid="uid://lxoexalxabme"]
+
+[ext_resource type="Script" path="res://scripts/load_play_area.gd" id="1_qyf51"]
+[ext_resource type="LabelSettings" uid="uid://ld3ft58h4k75" path="res://resources/label_settings/default_bold.tres" id="2_hnjpe"]
+[ext_resource type="FontFile" uid="uid://ces8cy0k1egmf" path="res://resources/font/lato-bold-webfont.ttf" id="3_qifq0"]
+[ext_resource type="Texture2D" uid="uid://reywphfca0dl" path="res://resources/imported_resources/room1-sheet0.png" id="3_x15ve"]
+[ext_resource type="Texture2D" uid="uid://chuk2u1yv7oh5" path="res://resources/imported_resources/ui_time1-sheet0.png" id="5_prm3u"]
+[ext_resource type="Texture2D" uid="uid://falbe4xp6nd5" path="res://resources/imported_resources/ui_time2-sheet0.png" id="6_wty22"]
+[ext_resource type="Texture2D" uid="uid://dej5747gy73bf" path="res://resources/imported_resources/ui_time3-sheet0.png" id="7_o5qaj"]
+[ext_resource type="Texture2D" uid="uid://dsdyp1sjxdd26" path="res://resources/imported_resources/ui_time0-sheet0.png" id="8_8qfij"]
+[ext_resource type="Shader" uid="uid://dxeo8pyiomxlh" path="res://resources/visual_shader/pause_button_red.tres" id="8_jfgn0"]
+[ext_resource type="Texture2D" uid="uid://2fr3h3yoybfr" path="res://resources/imported_resources/menu_exit-sheet0.png" id="10_yl8g4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7tbmq"]
+font = ExtResource("3_qifq0")
+font_size = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5q8md"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihgds"]
+shader = ExtResource("8_jfgn0")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xkswx"]
+
+[sub_resource type="GDScript" id="GDScript_e4ufq"]
+resource_name = "ExitToMainMenu"
+script/source = "extends TextureButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _pressed():
+	print(\"Returning to main menu\")
+	get_tree().change_scene_to_file(\"res://scenes/main_menu.tscn\")
+"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qyf51")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(384, 192)
+
+[node name="BG" type="Panel" parent="."]
+offset_right = 1024.0
+offset_bottom = 575.0
+
+[node name="ColorRect3" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 576.0
+color = Color(0.580392, 0.780392, 0.921569, 1)
+
+[node name="ColorRect" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 60.0
+color = Color(0.129412, 0.588235, 0.952941, 1)
+
+[node name="PopularityPercent" type="Label" parent="."]
+offset_left = 964.0
+offset_top = 24.0
+offset_right = 1021.0
+offset_bottom = 56.0
+text = "100%"
+label_settings = ExtResource("2_hnjpe")
+
+[node name="PopularityLabel" type="Label" parent="."]
+offset_left = 852.0
+offset_top = 24.0
+offset_right = 969.0
+offset_bottom = 56.0
+text = "Popularity:"
+label_settings = ExtResource("2_hnjpe")
+
+[node name="DateLabel" type="Label" parent="."]
+offset_left = 8.0
+offset_right = 144.0
+offset_bottom = 29.0
+text = "D1/M1/Y1970"
+label_settings = SubResource("LabelSettings_7tbmq")
+
+[node name="Room1-sheet0" type="Sprite2D" parent="."]
+position = Vector2(512, 328)
+scale = Vector2(0.547535, 0.547535)
+texture = ExtResource("3_x15ve")
+
+[node name="UiTime1-sheet0" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5q8md")
+position = Vector2(32, 40)
+scale = Vector2(0.615385, 0.533333)
+texture = ExtResource("5_prm3u")
+
+[node name="UiTime2-sheet0" type="Sprite2D" parent="."]
+position = Vector2(57, 40)
+scale = Vector2(0.529412, 0.533333)
+texture = ExtResource("6_wty22")
+
+[node name="UiTime3-sheet0" type="Sprite2D" parent="."]
+position = Vector2(82, 40)
+scale = Vector2(0.454545, 0.551724)
+texture = ExtResource("7_o5qaj")
+
+[node name="UiTime0-sheet0" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ihgds")
+position = Vector2(104, 40)
+scale = Vector2(0.615384, 0.533333)
+texture = ExtResource("8_8qfij")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 952.0
+offset_right = 1019.0
+offset_bottom = 32.0
+text = "$500K"
+label_settings = ExtResource("2_hnjpe")
+
+[node name="PauseBG" type="Panel" parent="."]
+offset_top = 60.0
+offset_right = 1024.0
+offset_bottom = 536.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xkswx")
+
+[node name="ColorRect2" type="ColorRect" parent="PauseBG"]
+layout_mode = 0
+offset_top = 476.0
+offset_right = 1024.0
+offset_bottom = 516.0
+color = Color(0.129412, 0.588235, 0.952941, 1)
+
+[node name="ColorRect" type="ColorRect" parent="PauseBG"]
+visible = false
+layout_mode = 0
+offset_right = 1024.0
+offset_bottom = 476.0
+color = Color(0.207843, 0.207843, 0.207843, 0.658824)
+
+[node name="TextureButton" type="TextureButton" parent="PauseBG"]
+layout_mode = 0
+offset_left = 945.0
+offset_top = 485.0
+offset_right = 975.0
+offset_bottom = 515.0
+texture_normal = ExtResource("10_yl8g4")
+script = SubResource("GDScript_e4ufq")
