@@ -5,7 +5,8 @@ func _ready():
 	var _PlayerCompany = {
 		"Cash": 0, ## Money available
 		"CEOName": "Steve Jobs", ## Name of CEO
-		"CompanyName": "Apple Computer Inc." ## Company name
+		"CompanyName": "Apple Computer Inc.", ## Company name
+		"Popularity": 0
 	}
 	print("PlayerCompany initialized")
 
@@ -15,3 +16,6 @@ func set_player_stats(key, value):
 
 func get_player_stats(key):
 	return PlayerCompany[key]
+
+func initialize_playercompany():
+	return

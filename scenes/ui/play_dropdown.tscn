@@ -1,23 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgd7iowcmkxgj"]
+[gd_scene load_steps=7 format=3 uid="uid://cgd7iowcmkxgj"]
 
 [ext_resource type="FontFile" uid="uid://ces8cy0k1egmf" path="res://resources/font/lato-bold-webfont.ttf" id="1_lhyy3"]
+
+[sub_resource type="GDScript" id="GDScript_8rdkw"]
+resource_name = "move_dropdown_to_mouse"
+script/source = "extends Control
+
+func ready():
+	var buttons = get_node(\"DropdownButtonContainer\")
+
+func _on_new_hardware_pressed():
+	pass # Replace with function body.
+
+func _on_research_pressed():
+	pass # Replace with function body.
+
+func _on_products_pressed():
+	pass # Replace with function body.
+
+func _on_companies_pressed():
+	pass # Replace with function body.
+
+func _on_milestones_pressed():
+	pass # Replace with function body.
+
+func _on_market_pressed():
+	pass # Replace with function body.
+
+func _on_bank_pressed():
+	pass # Replace with function body.
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsvrb"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynfq3"]
-bg_color = Color(0.317647, 0.67451, 0.960784, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqiok"]
+bg_color = Color(0.0901961, 0.466667, 0.729412, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iisjo"]
-bg_color = Color(0.392157, 0.709804, 0.964706, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmqyl"]
+bg_color = Color(0.317647, 0.67451, 0.960784, 1)
 
 [sub_resource type="Theme" id="Theme_n1alu"]
 default_font_size = 20
 Button/fonts/font = ExtResource("1_lhyy3")
-Button/styles/hover = SubResource("StyleBoxFlat_ynfq3")
-Button/styles/normal = SubResource("StyleBoxFlat_iisjo")
+Button/styles/hover = SubResource("StyleBoxFlat_cqiok")
+Button/styles/normal = SubResource("StyleBoxFlat_fmqyl")
 
 [node name="Control" type="Control"]
+visible = false
 layout_mode = 3
 anchor_right = 0.187
 anchor_bottom = 0.389
@@ -25,14 +55,15 @@ offset_right = 0.511993
 offset_bottom = -0.0640106
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_8rdkw")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="DropdownButtonContainer" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 192.0
 offset_bottom = 224.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_qsvrb")
 
-[node name="NewHardware" type="Button" parent="Panel"]
+[node name="NewHardware" type="Button" parent="DropdownButtonContainer"]
 layout_mode = 0
 offset_right = 192.0
 offset_bottom = 32.0
@@ -41,7 +72,8 @@ theme = SubResource("Theme_n1alu")
 text = "New Hardware"
 alignment = 0
 
-[node name="Research" type="Button" parent="Panel"]
+[node name="Research" type="Button" parent="DropdownButtonContainer"]
+layout_mode = 0
 offset_top = 32.0
 offset_right = 192.0
 offset_bottom = 64.0
@@ -49,7 +81,8 @@ theme = SubResource("Theme_n1alu")
 text = "R&D"
 alignment = 0
 
-[node name="Products" type="Button" parent="Panel"]
+[node name="Products" type="Button" parent="DropdownButtonContainer"]
+layout_mode = 0
 offset_top = 64.0
 offset_right = 192.0
 offset_bottom = 96.0
@@ -57,7 +90,8 @@ theme = SubResource("Theme_n1alu")
 text = "Products"
 alignment = 0
 
-[node name="Companies" type="Button" parent="Panel"]
+[node name="Companies" type="Button" parent="DropdownButtonContainer"]
+layout_mode = 0
 offset_top = 96.0
 offset_right = 192.0
 offset_bottom = 128.0
@@ -65,7 +99,8 @@ theme = SubResource("Theme_n1alu")
 text = "Companies"
 alignment = 0
 
-[node name="Milestones" type="Button" parent="Panel"]
+[node name="Milestones" type="Button" parent="DropdownButtonContainer"]
+layout_mode = 0
 offset_top = 128.0
 offset_right = 192.0
 offset_bottom = 160.0
@@ -73,7 +108,8 @@ theme = SubResource("Theme_n1alu")
 text = "Milestones"
 alignment = 0
 
-[node name="Market" type="Button" parent="Panel"]
+[node name="Market" type="Button" parent="DropdownButtonContainer"]
+layout_mode = 0
 offset_top = 160.0
 offset_right = 192.0
 offset_bottom = 192.0
@@ -81,7 +117,8 @@ theme = SubResource("Theme_n1alu")
 text = "Market"
 alignment = 0
 
-[node name="Bank" type="Button" parent="Panel"]
+[node name="Bank" type="Button" parent="DropdownButtonContainer"]
+layout_mode = 0
 offset_top = 192.0
 offset_right = 192.0
 offset_bottom = 224.0
@@ -89,3 +126,11 @@ rotation = -0.00133713
 theme = SubResource("Theme_n1alu")
 text = "Bank"
 alignment = 0
+
+[connection signal="pressed" from="DropdownButtonContainer/NewHardware" to="." method="_on_new_hardware_pressed"]
+[connection signal="pressed" from="DropdownButtonContainer/Research" to="." method="_on_research_pressed"]
+[connection signal="pressed" from="DropdownButtonContainer/Products" to="." method="_on_products_pressed"]
+[connection signal="pressed" from="DropdownButtonContainer/Companies" to="." method="_on_companies_pressed"]
+[connection signal="pressed" from="DropdownButtonContainer/Milestones" to="." method="_on_milestones_pressed"]
+[connection signal="pressed" from="DropdownButtonContainer/Market" to="." method="_on_market_pressed"]
+[connection signal="pressed" from="DropdownButtonContainer/Bank" to="." method="_on_bank_pressed"]

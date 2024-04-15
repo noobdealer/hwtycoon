@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hardware Tycoon (godot)"
-config/version="v0.1"
+config/version="0"
 run/main_scene="res://scenes/loading_screen.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="hwtycoon"
@@ -44,3 +44,4 @@ console={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+anti_aliasing/quality/screen_space_aa=1
