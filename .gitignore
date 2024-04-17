@@ -22,3 +22,4 @@ build/linux/
 build/web/
 *.exe
 *.pck
+*.x86_64

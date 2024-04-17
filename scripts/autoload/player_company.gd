@@ -17,5 +17,5 @@ func set_player_stats(key, value):
 func get_player_stats(key):
 	return PlayerCompany[key]
 
-func initialize_playercompany():
+func initialize_player_company():
 	return

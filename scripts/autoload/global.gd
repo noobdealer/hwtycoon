@@ -5,7 +5,7 @@ var GameConfig = ConfigFile.new() ## Starts the ConfigFile class
 
 ## This function initializes the Game's configuration file.
 ## It can also be used to set the settings to their defaults.
-func InitializeGameConfig():
+func initialize_game_config():
 	GameConfig.set_value("Audio", "music_volume", 0.95) ## Music volume
 	GameConfig.set_value("Audio", "sound_volume", 0.75) ## Sound volume
 	GameConfig.set_value("Display", "fullscreen", 0) ## Fullscreen
@@ -21,7 +21,7 @@ func InitializeGameConfig():
 	return
 
 ## This function returns a value from the GameConfig.
-func GetGameConfigValue(section, key):
+func get_game_config_value(section, key):
 	return GameConfig.get_value(section, key)
 	
 
@@ -36,7 +36,7 @@ func _ready():
 		push_warning("Game config failed to load for unknown reason, initializing")
 		# TODO: Tell user their config's invalid and has been reset
 		# TODO: Check if there are alternate reasons for why a file doesn't load
-		InitializeGameConfig()
+		initialize_game_config()
 		return
 	
 	print("Game config loaded")
