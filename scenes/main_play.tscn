@@ -85,6 +85,8 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="GDScript" id="GDScript_ympo2"]
 resource_name = "dropdown_manager"
 script/source = "extends Panel
+@onready var new_hardware_scene = 
+@onready var bank_scene = load(\"res://scenes/ui/bank.tscn\")
 
 func _on_new_hardware_pressed():
 	pass # Replace with function body.

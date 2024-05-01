@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://hh1oqra3j5d1"]
+
+[ext_resource type="Theme" uid="uid://vwsfko7qnse1" path="res://resources/theme/ui.tres" id="1_nsg45"]
+[ext_resource type="Texture2D" uid="uid://dmmys4x51jukd" path="res://resources/imported_resources/hardw_x-sheet0.png" id="2_ttvuc"]
+[ext_resource type="FontFile" uid="uid://ces8cy0k1egmf" path="res://resources/font/lato-bold-webfont.ttf" id="3_xmxpk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r2otj"]
+font = ExtResource("3_xmxpk")
+font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kylri"]
+bg_color = Color(0.85098, 0.85098, 0.85098, 1)
+
+[node name="Bank" type="Control"]
+layout_mode = 3
+anchor_right = 0.422
+anchor_bottom = 0.773
+offset_right = -0.128021
+offset_bottom = -0.248047
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_nsg45")
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+offset_right = 432.0
+offset_bottom = 48.0
+color = Color(0.392157, 0.709804, 0.964706, 1)
+
+[node name="TextureButton" type="TextureButton" parent="Panel/ColorRect"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 13.0
+offset_right = 44.0
+offset_bottom = 37.0
+texture_normal = ExtResource("2_ttvuc")
+texture_pressed = ExtResource("2_ttvuc")
+texture_hover = ExtResource("2_ttvuc")
+texture_disabled = ExtResource("2_ttvuc")
+texture_focused = ExtResource("2_ttvuc")
+
+[node name="Label" type="Label" parent="Panel/ColorRect"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 6.0
+offset_right = 119.0
+offset_bottom = 41.0
+text = "Bank"
+label_settings = SubResource("LabelSettings_r2otj")
+
+[node name="Loans" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = 88.0
+offset_right = 432.0
+offset_bottom = 444.0
+
+[node name="Taxes" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = 88.0
+offset_right = 432.0
+offset_bottom = 444.0
+
+[node name="Other" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_top = 88.0
+offset_right = 432.0
+offset_bottom = 444.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 144.0
+offset_bottom = 84.0
+theme = ExtResource("1_nsg45")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kylri")
+text = "Loans"
+
+[node name="Button2" type="Button" parent="Panel"]
+offset_left = 144.0
+offset_top = 48.0
+offset_right = 288.0
+offset_bottom = 84.0
+theme = ExtResource("1_nsg45")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kylri")
+text = "Taxes"
+
+[node name="Button3" type="Button" parent="Panel"]
+offset_left = 288.0
+offset_top = 48.0
+offset_right = 432.0
+offset_bottom = 84.0
+theme = ExtResource("1_nsg45")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kylri")
+text = "Other"

@@ -15,6 +15,7 @@ mono_crash.*.json
 
 # IDE ignores
 .vscode/
+.idea/
 
 # Build ignores
 build/windows/
@@ -23,3 +24,7 @@ build/web/
 *.exe
 *.pck
 *.x86_64
+*.app
+
+# Temporary files that keep showing up (?)
+*.tmp

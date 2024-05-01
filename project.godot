@@ -32,6 +32,10 @@ window/size/viewport_height=576
 window/size/initial_position_type=3
 window/stretch/mode="canvas_items"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 console={
